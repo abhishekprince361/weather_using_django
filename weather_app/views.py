@@ -11,11 +11,10 @@ def home(request):
         # city = "New Delhi"
 
     api_key = '40228924c4a3846ff0dd11a7ba543e17'
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
-    PARAMS = {"units": "metric"}
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={api_key}"
 
     try:
-        data = requests.get(url, PARAMS).json()
+        data = requests.get(url).json()
 
         photos = data['weather'][0]['main']
         temp = round(data['main']['temp'])
