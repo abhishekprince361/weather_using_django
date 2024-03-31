@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather using Django</title>
+    <link rel="stylesheet" href="{% static 'my_style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Weather Application</h1> <br>
+        <div class="search">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="city" placeholder="Enter City">
+                <button type="submit"><img src="{% static 'search.png' %}"  alt="imageNotFound"></button>
+            </form>
+        </div>
+        <div class="weather">
+            {% if boolean_value %}
+                <h2>Enter valid City Name</h2>
+            {% endif %}
+            <h2 class="day">{{ day }}</h2>
+            <h2 class="city">{{ city }} </h2>
+            {% if photos ==  'Thunderstorm' %}
+                <img src="{% static 'thunderstorm.png' %}" alt="imageNotFound">
+            {% elif photos ==  'Rain' %}
+                <img src="{% static 'rain.png' %}" alt="imageNotFound">
+            {% elif photos ==  'Snow' %}
+                <img src="{% static 'snow.png' %}" alt="imageNotFound">
+            {% elif photos ==  'Clear' %}
+                <img src="{% static 'Clear.png' %}" alt="imageNotFound">
+            {% elif photos ==  'Clouds' %}
+                <img src="{% static 'clouds.png' %}" alt="imageNotFound">
+            {% elif photos ==  'Mist' %}
+                <img src="{% static 'mist.png' %}" alt="imageNotFound">
+            {% else %}
+            <img src="{% static 'drizzle.png' %}" alt="imageNotFound">
+            {% endif %}
+            <h1 class="temp">{{ temp }}°C</h1>
+            <div class="details">
+                <div class="col">
+                    <img src="{% static 'humidity.png' %}" alt="imageNotFound">
+                    <div>
+                        <p class="humidity">{{ humidity }}%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="{% static 'wind.png' %}" alt="imageNotFound">
+                    <div>
+                        <p class="wind">{{ speed }} km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
